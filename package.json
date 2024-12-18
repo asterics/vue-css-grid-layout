@@ -1,12 +1,23 @@
 {
   "name": "vue-css-grid-layout",
-  "version": "1.0.0",
-  "type": "module",
   "description": "A grid layout for Vue.js using CSS Grid",
+  "version": "1.0.0",
+  "author": "Benjamin Klaus",
+  "license": "AGPL-3.0",
+  "keywords": ["vue", "vue.js", "vuejs", "vue-library", "grid layout", "CSS Grid", "grid", "raster"],
+  "type": "module",
   "main": "dist/my-vue-library.umd.js",
   "module": "dist/my-vue-library.esm.js",
   "scripts": {
     "build": "vite build"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/asterics/vue-css-grid-layout"
   },
   "peerDependencies": {
     "vue": "^2.7.0"

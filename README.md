@@ -1,2 +1,2 @@
-# vue-css-grid-layout
-A grid layout for Vue.js using CSS Grid
+# Vue CSS Grid Layout
+A grid layout for Vue.js using CSS Grid.
