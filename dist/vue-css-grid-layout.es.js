@@ -28,7 +28,7 @@ var M = function() {
   null,
   "35c5d425"
 );
-const b = I.exports;
+const w = I.exports;
 let a = {};
 a.DIR_UP = 1;
 a.DIR_RIGHT = 2;
@@ -58,7 +58,7 @@ a.insertDuplicate = function(e, t, i, r = {}) {
   return e = c(e, r.dontCopy), a.isFreeSpace(e, t.x + t.width, t.y, t.width, t.height, r) ? (i.x = t.x + t.width, e.push(i)) : a.isFreeSpace(e, t.x, t.y + t.height, t.width, t.height, r) ? (i.y = t.y + t.height, e.push(i)) : a.isFreeSpace(e, t.x - t.width, t.y, t.width, t.height, r) ? (i.x = t.x - t.width, e.push(i)) : a.isFreeSpace(e, t.x, t.y - t.height, t.width, t.height, r) ? (i.y = t.y - t.height, e.push(i)) : (e.push(i), r.dontCopy = !0, e = a.resolveCollisions(e, t, r)), e;
 };
 a.moveElements = function(e, t = {}) {
-  e = e || [], t.moveX = t.moveX || 0, t.moveY = t.moveY || 0, t.startX = t.startX || 0, t.startY = t.startY || 0, t.moveElements = t.moveElements || e.filter((i) => i.x >= t.startX && i.y >= t.startY), m(t.moveElements, t.moveX, t.moveY);
+  e = e || [], t.moveX = t.moveX || 0, t.moveY = t.moveY || 0, t.startX = t.startX || 0, t.startY = t.startY || 0, t.moveElements = t.moveElements || e.filter((i) => i.x >= t.startX && i.y >= t.startY), v(t.moveElements, t.moveX, t.moveY);
   for (let i of t.moveElements)
     a.isFreeSpace(
       e,
@@ -74,7 +74,7 @@ a.moveAsPossible = function(e = [], t = [], i, r = {}) {
   if (r.dontCopy || (e = c(e), t = t.map((o) => e.find((d) => d.id === o.id))), !a.DIRECTIONS_ALL.includes(i))
     return e;
   let s = C(i);
-  m(t, s.x, s.y);
+  v(t, s.x, s.y);
   for (let o of t) {
     let d = e.filter((u) => u.id !== o.id), n;
     for (n = 1; n <= (r.maxMove || a.MAX_GRID_SIZE) && a.isFreeSpace(d, o.x + s.x * n, o.y + s.y * n, o.width, o.height, r); n++)
@@ -87,10 +87,10 @@ a.isFreeSpace = function(e, t, i, r, s, o = {}) {
   if (t < 0 || i < 0)
     return !1;
   o.outOfBounds = o.outOfBounds === !0;
-  let d = a.getWidth(e, o.gridWidth), n = a.getHeight(e, o.gridHeight), u = v(e, o);
+  let d = a.getWidth(e, o.gridWidth), n = a.getHeight(e, o.gridHeight), u = m(e, o);
   for (let l = t; l < t + r; l++)
     for (let h = i; h < i + s; h++)
-      if (w(u, l, h) || !o.outOfBounds && (l < 0 || h < 0 || l >= d || h >= n))
+      if (b(u, l, h) || !o.outOfBounds && (l < 0 || h < 0 || l >= d || h >= n))
         return !1;
   return !0;
 };
@@ -140,7 +140,7 @@ a.getMoveRightPosition = function(e, t) {
 a.getElementById = function(e = [], t) {
   return e.find((i) => i.id === t);
 };
-function v(e, t = {}) {
+function m(e, t = {}) {
   let i = D(
     a.getWidth(e, t.gridWidth),
     a.getHeight(e, t.gridHeight),
@@ -152,11 +152,11 @@ function v(e, t = {}) {
         i[s][o]++;
   return i;
 }
-function w(e, t, i) {
+function b(e, t, i) {
   return !!(e[t] && e[t][i]);
 }
 function f(e) {
-  let t = v(e), i = 0;
+  let t = m(e), i = 0;
   for (let r = 0; r < t.length; r++)
     i = Math.max(i, Math.max.apply(null, t[r]));
   return i > 1;
@@ -176,7 +176,7 @@ function C(e) {
 function $(e, t) {
   return e.width >= t.width && e.height >= t.height && e.x <= t.x && e.x + e.width >= t.x + t.width && e.y <= t.y && e.y + e.height >= t.y + t.height;
 }
-function m(e, t, i) {
+function v(e, t, i) {
   e.sort((r, s) => t !== 0 ? t * (s.x - r.x) : i * (s.y - r.y));
 }
 function D(e, t, i) {
@@ -194,7 +194,7 @@ function x(e = {}) {
   return Object.assign({}, e);
 }
 const L = {
-  components: { GridElement: b },
+  components: { GridElement: w },
   props: {
     rows: Number,
     columns: Number,
@@ -244,6 +244,12 @@ const L = {
   watch: {
     editable() {
       this.reinit();
+    },
+    rows() {
+      this.reinit();
+    },
+    columns() {
+      this.reinit();
     }
   },
   computed: {
@@ -289,11 +295,11 @@ const L = {
       this.$emit("changed", s), this.reinit();
     },
     getElement(e) {
-      return this.elements.find((t) => t.id === e);
+      return this.elements.find((t) => t.id + "" == e + "");
     },
     reinit() {
       this.$nextTick(() => {
-        this.initInteract();
+        this.initInteract(), this.$forceUpdate();
       });
     },
     async initInteract() {
@@ -384,8 +390,8 @@ const L = {
 };
 var S = function() {
   var t = this, i = t._self._c;
-  return i("div", { class: "grid-parent " + t.myId, style: t.cssProps }, [t.backgroundLines ? i("div", [i("div", { staticClass: "grid-bg-lines", style: `margin-left: ${t.getRasterX()}px; background-size: ${t.getRasterX()}px ${t.getRasterX()}px; background-image: linear-gradient(to right, grey 1px, transparent 1px)` }), i("div", { staticClass: "grid-bg-lines", style: `margin-top: ${t.getRasterY()}px; background-size: ${t.getRasterY()}px ${t.getRasterY()}px; background-image: linear-gradient(to bottom, grey 1px, transparent 1px);` })]) : t._e(), i("transition-group", { ref: "gridComponent", staticClass: "grid-layout", style: `grid-template-columns: repeat(${t.columns}, minmax(0, 1fr)); grid-template-rows: repeat(${t.rows}, minmax(0, 1fr)); background-color: ${t.backgroundColor}`, attrs: { name: t.editable ? "grid-transition" : "", tag: t.baseTag } }, t._l(t.elements, function(r) {
-    return i("grid-element", { key: r.id, class: r.id === t.noMoveId ? "nomove" : "", attrs: { "data-id": r.id, x: r.x, y: r.y, width: r.width, height: r.height, tag: t.elementTag } }, [i(t.renderComponent, t._b({ tag: "component", attrs: { id: r.id, element: r } }, "component", t.$attrs, !1))], 1);
+  return i("div", { class: "grid-parent " + t.myId, style: t.cssProps }, [t.backgroundLines ? i("div", [i("div", { staticClass: "grid-bg-lines", style: `margin-left: ${t.getRasterX()}px; margin-right: 1px; background-size: ${t.getRasterX()}px ${t.getRasterX()}px; background-image: linear-gradient(to right, grey 1px, transparent 1px)` }), i("div", { staticClass: "grid-bg-lines", style: `margin-top: ${t.getRasterY()}px; margin-bottom: 1px; background-size: ${t.getRasterY()}px ${t.getRasterY()}px; background-image: linear-gradient(to bottom, grey 1px, transparent 1px);` })]) : t._e(), i("transition-group", { ref: "gridComponent", staticClass: "grid-layout", style: `grid-template-columns: repeat(${t.columns}, minmax(0, 1fr)); grid-template-rows: repeat(${t.rows}, minmax(0, 1fr)); background-color: ${t.backgroundColor}`, attrs: { name: t.editable ? "grid-transition" : "", tag: t.baseTag } }, t._l(t.elements, function(r) {
+    return i("grid-element", { key: r.id, class: r.id + "" === t.noMoveId ? "nomove" : "", attrs: { "data-id": r.id, x: r.x, y: r.y, width: r.width, height: r.height, tag: t.elementTag } }, [i(t.renderComponent, t._b({ tag: "component", attrs: { id: r.id, element: r } }, "component", t.$attrs, !1))], 1);
   }), 1)], 1);
 }, P = [], X = /* @__PURE__ */ p(
   L,
@@ -393,7 +399,7 @@ var S = function() {
   P,
   !1,
   null,
-  "cb6aa70e"
+  "486fe911"
 );
 const T = X.exports;
 export {

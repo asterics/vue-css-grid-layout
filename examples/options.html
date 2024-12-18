@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue CSS Grid Layout - Example on options</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="../dist/vue-css-grid-layout.css">
+    <style>
+        .render-component {
+            display: flex;
+            flex-grow: 1;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid darkblue;
+            position: relative;
+            background-color: lightblue;
+        }
+
+        .resize-handle {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            background-color: gray;
+        }
+
+        .options {
+            margin-bottom: 2em;
+        }
+
+        .options div {
+            margin-bottom: 0.5em;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1>Vue CSS Grid Layout - example on options</h1>
+    <p>In this example you can test the basic options.</p>
+    <div class="options">
+        <h2>Options</h2>
+        <div>
+            <label for="rows">Minimum number of rows</label>
+            <input id="rows" type="range" min="1" max="50" v-model.number="minRows">
+            <span>{{minRows}}</span>
+        </div>
+        <div>
+            <label for="cols">Minimum number of columns</label>
+            <input id="cols" type="range" min="1" max="50" v-model.number="minColumns">
+            <span>{{minColumns}}</span>
+        </div>
+        <div>
+            <label for="gridWidth">Grid width (px)</label>
+            <input id="gridWidth" type="range" min="100" max="1000" v-model="gridWidth">
+            <span>{{gridWidth}}px</span>
+        </div>
+        <div>
+            <label for="gridHeight">Grid height (px)</label>
+            <input id="gridHeight" type="range" min="100" max="1000" v-model="gridHeight">
+            <span>{{gridHeight}}px</span>
+        </div>
+        <div>
+            <label for="animationDuration">Animation duration (ms)</label>
+            <input id="animationDuration" type="range" min="0" max="1000" v-model.number="animationDuration">
+            <span>{{animationDuration}}ms</span>
+        </div>
+        <div>
+            <label for="bgcolor">Background color</label>
+            <input id="bgcolor" type="color" v-model="bgColor">
+        </div>
+        <div>
+            <input id="bgLines" type="checkbox" v-model="backgroundLines">
+            <label for="bgLines">Background lines</label>
+        </div>
+        <div>
+            <input id="editable" type="checkbox" v-model="editable">
+            <label for="editable">Editable</label>
+        </div>
+    </div>
+
+    <grid-layout :background-color="bgColor"
+                 :elements="elements" render-component="render-component"
+                 :rows="minRows" :columns="minColumns"
+                 :background-lines="backgroundLines"
+                 :editable="editable"
+                 resize-handle-selector=".resize-handle"
+                 :animation-duration-ms="animationDuration"
+                 :style="`width: ${gridWidth}px; height: ${gridHeight}px;`"
+                 @changed="onChange"/>
+</div>
+
+<script type="module">
+    import { GridLayout } from '../dist/vue-css-grid-layout.es.js'
+
+    Vue.component("render-component", {
+        template: `
+            <div class="render-component">
+                <span>{{ element.id }}</span>
+                <span class="resize-handle"></span>
+            </div>`,
+        props: {
+            element: Object
+        }
+    });
+
+    new Vue({
+        el: "#app",
+        components: {GridLayout},
+        data() {
+            return {
+                elements: this.getElements(),
+                gridWidth: 500,
+                gridHeight: 500,
+                minRows: 10,
+                minColumns: 10,
+                backgroundLines: true,
+                editable: true,
+                bgColor: "#f5f5f5",
+                animationDuration: 200
+            };
+        },
+        methods: {
+            onChange(newElements) {
+                this.elements = newElements;
+            },
+            getElements(x, y, width, height) {
+                let elems = [];
+                for (let i = 0; i < 6; i++) {
+                    for (let j = 0; j < 6; j++) {
+                        elems.push({
+                            x: i + 2,
+                            y: j + 2,
+                            width: 1,
+                            height: 1,
+                            id: i + 1 + j * 10
+                        })
+                    }
+                }
+                return elems;
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
