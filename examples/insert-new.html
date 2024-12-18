@@ -66,7 +66,6 @@
         },
         methods: {
             insertNew(x, y) {
-                console.log(x,y);
                 let elem = {
                     x: x,
                     y: y,
@@ -74,7 +73,6 @@
                     height: 1,
                     id: this.currentId
                 };
-                console.log(elem);
                 let newElements = this.elements.concat([elem]);
                 this.elements = gridLayoutUtil.resolveCollisions(newElements, elem);
                 this.currentId++;
