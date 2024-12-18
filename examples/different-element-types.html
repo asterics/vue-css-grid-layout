@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue CSS Grid Layout - different element types</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="../dist/vue-css-grid-layout.css">
+    <style>
+        .render-component {
+            border: 1px solid darkblue;
+            background-color: white;
+        }
+
+        .render-component, .render-component div {
+            display: flex;
+            flex-grow: 1;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1>Vue CSS Grid Layout - different element types</h1>
+    <p>This examples shows how to render different types of elements within the grid.</p>
+
+    <grid-layout background-color="whitesmoke"
+                 :elements="elements" render-component="render-component"
+                 :rows="10" :columns="10"
+                 :style="`width: 500px; height: 500px;`"/>
+</div>
+
+<script type="module">
+    import { GridLayout } from '../dist/vue-css-grid-layout.es.js'
+
+    window.ELEMENT_TYPES = {
+        TEXT: "TEXT",
+        COLOR: "COLOR"
+    }
+
+    Vue.component("render-component", {
+        template: `
+            <div class="render-component">
+                <div v-if="element.type === ELEMENT_TYPES.TEXT" style="text-align: center">{{ element.text }}</div>
+                <div v-if="element.type === ELEMENT_TYPES.COLOR" :style="'background-color: ' + element.color"></div>
+            </div>`,
+        props: {
+            element: Object
+        },
+        data() {
+            return {
+                ELEMENT_TYPES: ELEMENT_TYPES
+            }
+        }
+    });
+
+    new Vue({
+        el: "#app",
+        components: { GridLayout },
+        data() {
+            return {
+                elements: this.getElements(),
+                ELEMENT_TYPES: window.ELEMENT_TYPES
+            };
+        },
+        methods: {
+            getElements() {
+                let elems = [];
+                let count = 0;
+                for (let i = 0; i < 11; i++) {
+                    for (let j = 0; j < 11; j++) {
+                        let elem = {
+                            x: j,
+                            y: i,
+                            width: 1,
+                            height: 1,
+                            id: count
+                        };
+                        if (count % 2 === 0) {
+                            let colors = ['lightgreen', 'lightsalmon', 'lightblue', 'lightcoral', 'lightcyan', 'lightpink', 'lightyellow'];
+                            elem.color = colors[Math.floor(Math.random() * colors.length)];
+                            elem.type = ELEMENT_TYPES.COLOR;
+                        }
+                        if (count % 2 === 1) {
+                            elem.text = "Text " + count;
+                            elem.type = ELEMENT_TYPES.TEXT;
+                        }
+                        elems.push(elem);
+                        count++;
+                    }
+                }
+                return elems;
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
