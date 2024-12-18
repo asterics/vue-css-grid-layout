@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue CSS Grid Layout - switch layouts</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="../dist/vue-css-grid-layout.css">
+    <style>
+        .render-component {
+            display: flex;
+            flex-grow: 1;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid darkblue;
+            position: relative;
+            background-color: lightblue;
+        }
+
+        .options {
+            margin-bottom: 2em;
+        }
+
+        .options button {
+            margin-bottom: 0.5em;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1>Vue CSS Grid Layout - switch layouts</h1>
+    <p>Switch between pre-defined layouts.</p>
+    <div class="options">
+        <h2>Actions</h2>
+        <button @click="prev">Previous layout</button>
+        <button @click="next">Next layout</button>
+        <div>Currently showing layout {{ index + 1 }}</div>
+    </div>
+
+    <grid-layout background-color="whitesmoke"
+                 :elements="allLayouts[index]" render-component="render-component"
+                 :rows="1" :columns="1"
+                 :style="`width: 500px; height: 500px;`" />
+</div>
+
+<script type="module">
+    import { GridLayout, gridLayoutUtil } from '../dist/vue-css-grid-layout.es.js'
+
+    Vue.component("render-component", {
+        template: `
+            <div class="render-component">
+                <span>{{ element.id }}</span>
+            </div>`,
+        props: {
+            element: Object
+        }
+    });
+
+    new Vue({
+        el: "#app",
+        components: { GridLayout },
+        data() {
+            return {
+                allLayouts: [this.getElements(), this.getElements(), this.getElements(), this.getElements(), this.getElements()],
+                index: 0
+            };
+        },
+        methods: {
+            next() {
+                this.index = this.index + 1 < this.allLayouts.length ? this.index + 1 : 0;
+            },
+            prev() {
+                this.index = this.index - 1 >= 0 ? this.index - 1 : this.allLayouts.length - 1;
+            },
+            getElements() {
+                let elems = [];
+                for (let i = 0; i < 30; i++) {
+                    let elem = {
+                        x: this.randomInt(0, 9),
+                        y: this.randomInt(0, 9),
+                        width: this.randomInt(1, 3),
+                        height: this.randomInt(1, 3),
+                        id: i
+                    };
+                    elems.push(elem);
+                    elems = gridLayoutUtil.resolveCollisions(elems, elem);
+                }
+                //elems = gridLayoutUtil.moveAsPossible(elems, elems, gridLayoutUtil.DIR_LEFT, {outOfBounds: true});
+                //elems = gridLayoutUtil.moveAsPossible(elems, elems, gridLayoutUtil.DIR_UP, {outOfBounds: true});
+                return elems;
+            },
+            randomInt (min, max) {
+                return Math.floor(Math.random() * (max - min) + min);
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
