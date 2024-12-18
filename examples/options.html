@@ -37,7 +37,13 @@
 <body>
 <div id="app">
     <h1>Vue CSS Grid Layout - example on options</h1>
-    <p>In this example you can test the basic options.</p>
+    <div>
+        In this example you can test the basic options and collision handling:
+        <ul>
+            <li>if moved exactly to the location of another element, elements are swapped</li>
+            <li>if moved in-between two other elements, elements are moved to the right in order to make space</li>
+        </ul>
+    </div>
     <div class="options">
         <h2>Options</h2>
         <div>
@@ -124,7 +130,7 @@
             onChange(newElements) {
                 this.elements = newElements;
             },
-            getElements(x, y, width, height) {
+            getElements() {
                 let elems = [];
                 for (let i = 0; i < 6; i++) {
                     for (let j = 0; j < 6; j++) {
