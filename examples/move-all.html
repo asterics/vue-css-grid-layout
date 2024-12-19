@@ -108,6 +108,7 @@
         },
         mounted() {
             document.addEventListener('keydown', event => {
+                event.preventDefault();
                 if (event.key === 'ArrowUp') {
                     this.top();
                 }
