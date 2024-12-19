@@ -18,6 +18,15 @@ This library was created since both [vue-grid-layout](https://github.com/jbaysol
 > [!NOTE]  
 > Currently only Vue `2.7` is supported. PR for Vue  3 are welcome.
 
+## Examples
+There are the following examples, see [folder examples](https://github.com/asterics/vue-css-grid-layout/tree/main/examples):
+* [minimum-example.html](https://asterics.github.io/vue-css-grid-layout/examples/minimum-example.html): minimum working example
+* [basic-options.html](https://asterics.github.io/vue-css-grid-layout/examples/basic-options.html): try all options
+* [different-element-types.html](https://asterics.github.io/vue-css-grid-layout/examples/different-element-types.html): render different types of elements
+* [insert-new.html](https://asterics.github.io/vue-css-grid-layout/examples/insert-new.html): insert new elements at a specific location by click / tap
+* [move-all.html](https://asterics.github.io/vue-css-grid-layout/examples/move-all.html): move all elements to top / right / bottom / left
+* [switch-layouts.html](https://asterics.github.io/vue-css-grid-layout/examples/switch-layouts.html): switch between predefined layouts
+
 ## Use via npm in SFC
 To use this library via npm and with Vue's Single-File Components (SFC), follow these steps:
 
