@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue CSS Grid Layout - minimum example</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="../dist/vue-css-grid-layout.css">
+    <style>
+        .render-component {
+            display: flex;
+            flex-grow: 1;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid darkblue;
+            position: relative;
+            background-color: lightblue;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1>Vue CSS Grid Layout - minimum example</h1>
+    <p>Minimum working example for Vue2.</p>
+
+    <grid-layout :elements="elements" render-component="render-component"/>
+</div>
+
+<script type="module">
+    import { GridLayout } from '../dist/vue-css-grid-layout.es.js'
+
+    Vue.component('render-component', {
+        template: `<div class="render-component">{{ element.id }}</div>`,
+        props: {
+            element: Object
+        }
+    });
+
+    new Vue({
+        el: '#app',
+        components: { GridLayout },
+        data() {
+            return {
+                elements: [{
+                    x: 0,
+                    y: 0,
+                    width: 1,
+                    height: 1,
+                    id: 1
+                }, {
+                    x: 1,
+                    y: 1,
+                    width: 1,
+                    height: 1,
+                    id: 2
+                }]
+            };
+        }
+    });
+</script>
+
+</body>
+</html>
