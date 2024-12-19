@@ -22,6 +22,7 @@ This library was created since both [vue-grid-layout](https://github.com/jbaysol
 There are the following examples (see [folder examples](https://github.com/asterics/vue-css-grid-layout/tree/main/examples)):
 * [minimum-example.html](https://asterics.github.io/vue-css-grid-layout/examples/minimum-example.html): minimum working example
 * [basic-options.html](https://asterics.github.io/vue-css-grid-layout/examples/basic-options.html): try all options
+* [responsive.html](https://asterics.github.io/vue-css-grid-layout/examples/responsive.html): responsive grid using full viewport size
 * [different-element-types.html](https://asterics.github.io/vue-css-grid-layout/examples/different-element-types.html): render different types of elements
 * [insert-new.html](https://asterics.github.io/vue-css-grid-layout/examples/insert-new.html): insert new elements at a specific location by click / tap
 * [move-all.html](https://asterics.github.io/vue-css-grid-layout/examples/move-all.html): move all elements to top / right / bottom / left
