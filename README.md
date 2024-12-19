@@ -16,10 +16,10 @@ This library was created since both [vue-grid-layout](https://github.com/jbaysol
 * easy way to move all elements
 
 > [!NOTE]  
-> Currently only Vue `2.7` is supported. PR for Vue  3 are welcome.
+> Currently only Vue `2.7` is supported, but it should be no problem to make the library compatible with Vue 3
 
 ## Examples
-There are the following examples, see [folder examples](https://github.com/asterics/vue-css-grid-layout/tree/main/examples):
+There are the following examples (see [folder examples](https://github.com/asterics/vue-css-grid-layout/tree/main/examples)):
 * [minimum-example.html](https://asterics.github.io/vue-css-grid-layout/examples/minimum-example.html): minimum working example
 * [basic-options.html](https://asterics.github.io/vue-css-grid-layout/examples/basic-options.html): try all options
 * [different-element-types.html](https://asterics.github.io/vue-css-grid-layout/examples/different-element-types.html): render different types of elements
@@ -30,7 +30,7 @@ There are the following examples, see [folder examples](https://github.com/aster
 ## Use via npm in SFC
 To use this library via npm and with Vue's Single-File Components (SFC), follow these steps:
 
-First install via `npm install vue-css-grid-layout --save` or `yarn add vue-css-grid-layout`
+First install via `npm install vue-css-grid-layout --save` or `yarn add vue-css-grid-layout`.
 
 Create a custom component for rendering a single grid element like this, e.g. as `render-component.vue`:
 ```vue
@@ -83,7 +83,7 @@ export default {
 ```
 
 ## Use from CDN
-To directly use this library in your project, you can just import the file from CDN (or use the files from the `dist` folder of this repository).
+You can also use the files from CDN (or use the files from the `dist` folder of this repository).
 
 Include the CSS: 
 ```html
@@ -123,6 +123,8 @@ Import the `GridLayout` class in a script and use it:
     });
 </script>
 ```
+
+See [minimum-example.html](https://github.com/asterics/vue-css-grid-layout/blob/main/examples/minimum-example.html) for the full example.
 
 ## API
 There are two components that can be used:
