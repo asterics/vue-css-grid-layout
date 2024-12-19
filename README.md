@@ -193,3 +193,5 @@ This library was initially developed within a [netidee project funding](https://
 <a href="https://www.netidee.at/asterics-grid">
 <img src="https://github.com/asterics/AsTeRICS-Grid/assets/2537025/bccf076b-9682-4083-b259-31dffbd2bb17"/>
 </a>
+
+This library uses [interact.js](https://interactjs.io/) as dependency.
