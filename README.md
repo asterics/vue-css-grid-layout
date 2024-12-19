@@ -2,8 +2,8 @@
 A grid layout for Vue.js using CSS Grid Layout.
 
 <div align="center" width="100%">
-    <img src="img/dragging-resizing-collisions.gif" height="200">
-    <img src="img/move-all.gif" height="200">
+    <img src="img/dragging-resizing-collisions.gif" width="40%">
+    <img src="img/move-all.gif" width="40%">
 </div>
 
 ## Features
