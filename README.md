@@ -1,5 +1,10 @@
 # Vue CSS Grid Layout
-A grid layout for Vue.js using CSS Grid.
+A grid layout for Vue.js using CSS Grid. Developed for use in the [AAC application AsTeRICS Grid](https://github.com/asterics/AsTeRICS-Grid).
+
+<div>
+    <img src="img/dragging-resizing-collisions.gif" height="150">
+    <img src="img/move-all.gif" height="150">
+</div>
 
 ## Use via npm in SFC
 To use this library via npm and with Vue's Single-File Components (SFC), follow these steps:
