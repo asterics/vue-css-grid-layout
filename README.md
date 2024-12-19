@@ -2,8 +2,8 @@
 A grid layout for Vue.js using CSS Grid. Developed for use in the [AAC application AsTeRICS Grid](https://github.com/asterics/AsTeRICS-Grid).
 
 <div align="center" width="100%">
-    <img src="img/dragging-resizing-collisions.gif" height="150">
-    <img src="img/move-all.gif" height="150">
+    <img src="img/dragging-resizing-collisions.gif" height="200">
+    <img src="img/move-all.gif" height="200">
 </div>
 
 ## Use via npm in SFC
