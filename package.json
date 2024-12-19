@@ -6,8 +6,8 @@
   "license": "AGPL-3.0",
   "keywords": ["vue", "vue.js", "vuejs", "vue-library", "grid layout", "CSS Grid", "grid", "raster"],
   "type": "module",
-  "main": "dist/my-vue-library.umd.js",
-  "module": "dist/my-vue-library.esm.js",
+  "main": "dist/vue-css-grid-layout.umd.js",
+  "module": "dist/vue-css-grid-layout.es.js",
   "scripts": {
     "build": "vite build"
   },
