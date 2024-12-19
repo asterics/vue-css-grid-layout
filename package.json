@@ -4,7 +4,7 @@
   "version": "1.0.1",
   "author": "Benjamin Klaus",
   "license": "AGPL-3.0",
-  "keywords": ["vue", "vue.js", "vuejs", "vue-library", "grid layout", "CSS Grid", "grid", "raster"],
+  "keywords": ["vue", "vue.js", "vuejs", "vue-library", "grid layout", "CSS Grid", "grid", "raster", "draggable", "resizable"],
   "type": "module",
   "main": "dist/vue-css-grid-layout.umd.js",
   "module": "dist/vue-css-grid-layout.es.js",

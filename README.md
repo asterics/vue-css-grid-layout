@@ -1,10 +1,22 @@
 # Vue CSS Grid Layout
-A grid layout for Vue.js using CSS Grid. Developed for use in the [AAC application AsTeRICS Grid](https://github.com/asterics/AsTeRICS-Grid).
+A grid layout for Vue.js using CSS Grid Layout.
 
 <div align="center" width="100%">
     <img src="img/dragging-resizing-collisions.gif" height="200">
     <img src="img/move-all.gif" height="200">
 </div>
+
+## Features
+This library was created since both [vue-grid-layout](https://github.com/jbaysolutions/vue-grid-layout) and [gridstack.js](https://github.com/gridstack/gridstack.js) didn't fit the requirements for the use in the [AAC application AsTeRICS Grid](https://github.com/asterics/AsTeRICS-Grid). The main features are:
+* uses the native [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout) instead of absolute positioning
+* automatically fills the whole container with same-sized grid elements ([not easily possible in gridstack.js](https://github.com/gridstack/gridstack.js/issues/2583))
+* uses native [Vue List Move Transitions](https://v2.vuejs.org/v2/guide/transitions#List-Move-Transitions) for animations
+* predictable collision handling: either swapping elements by dropping an element onto another element or move other elements to the right, by dropping it in-between two elements
+* not moving other elements until dropping the moved element (not messing up of the layout while moving)
+* easy way to move all elements
+
+> [!NOTE]  
+> Currently only Vue `2.7` is supported. PR for Vue  3 are welcome.
 
 ## Use via npm in SFC
 To use this library via npm and with Vue's Single-File Components (SFC), follow these steps:
