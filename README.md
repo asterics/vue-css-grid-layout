@@ -160,7 +160,7 @@ props: {
 }
 ```
 
-## Events
+#### Events
 Two events can be emitted by `GridLayout` with `editable: true`:
 * `changed (newElements)`: the event `changed` is emitted after the layout has changed by dragging or resizing. In the handler the rendered elements should be set to the new elements like `this.elements = newElements`.
 * `interacted (x,y)`: the event `interacted` is emitted after a click or tap anywhere on the grid returning the coordinates of this event. This makes it easily possible to create new elements at the position of the last user interaction.
